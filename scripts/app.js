@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     listEl.innerHTML = '<div style="text-align:center; padding:2rem;">Loading synced quotes...</div>';
 
     let allQuotes = await Storage.getAll();
+    if (allQuotes.length === 0) {
+        // Try migration if cloud is empty but local has data
+        await Storage.migrateLocalData();
+        allQuotes = await Storage.getAll();
+    }
     UI.renderQuoteList(allQuotes);
     UI.renderStats(allQuotes);
 
