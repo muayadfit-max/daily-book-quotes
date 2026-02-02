@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Book Quotes</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Quotes</h1>
+            <p>Your daily collection of reading reflections.</p>
+        </header>
+
+        <!-- Stats Bar -->
+        <div id="statsBar" class="stats-bar"></div>
+
+        <!-- Add Quote Form -->
+        <section class="quote-form-card">
+            <form id="quoteForm">
+                <div class="form-group full-width">
+                    <label for="quoteText">Quote *</label>
+                    <textarea id="quoteText" placeholder="Whatever you read that moved you..." required></textarea>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="bookTitle">Book Title *</label>
+                        <input type="text" id="bookTitle" placeholder="e.g. Atomic Habits" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="authorName">Author *</label>
+                        <input type="text" id="authorName" placeholder="e.g. James Clear" required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="pageNumber">Page (Opt)</label>
+                        <input type="number" id="pageNumber" placeholder="124">
+                    </div>
+                    <div class="form-group">
+                        <label for="quoteDate">Date</label>
+                        <input type="date" id="quoteDate">
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="notes">Reflections / Notes (Optional)</label>
+                    <input type="text" id="notes" placeholder="Why did this standout?">
+                </div>
+
+                <button type="submit" class="btn-primary">Save Quote</button>
+            </form>
+        </section>
+
+        <!-- Filter & Search -->
+        <div class="filter-bar">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search saved quotes...">
+            <select id="sortSelect">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="author">By Author</option>
+            </select>
+        </div>
+
+        <!-- Quote List -->
+        <div id="quoteList" class="quote-list">
+            <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+                No quotes added yet. Start reading!
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (Loaded sequentially for file:// compatibility) -->
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/ui.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>
