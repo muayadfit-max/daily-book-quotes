@@ -82,8 +82,34 @@
         </div>
     </div>
 
-    <!-- Scripts (Loaded sequentially for file:// compatibility) -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <!-- Debug Console for Mobile -->
+    <div id="debug-log"
+        style="background: #000; color: #0f0; padding: 10px; font-family: monospace; display: none; margin-top: 20px;">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Debug Logger
+        const debugLog = document.getElementById('debug-log');
+        function logToScreen(msg, isError = false) {
+            // debugLog.style.display = 'block'; // Uncomment to see logs always
+            const p = document.createElement('div');
+            p.textContent = (isError ? '❌ ' : 'ℹ️ ') + msg;
+            p.style.color = isError ? '#ff5555' : '#0f0';
+            debugLog.appendChild(p);
+        }
+
+        window.onerror = function (msg, url, line) {
+            debugLog.style.display = 'block';
+            logToScreen(`Global Error: ${msg} at ${line}`, true);
+        };
+    </script>
+
+    <!-- Supabase SDK (Try UNPKG) -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.js"
+        onload="logToScreen('Supabase Loaded Successfully')"
+        onerror="logToScreen('Failed to load Supabase from UNPKG', true); document.getElementById('debug-log').style.display='block';"></script>
+
     <script src="scripts/storage.js"></script>
     <script src="scripts/ui.js"></script>
     <script src="scripts/app.js"></script>

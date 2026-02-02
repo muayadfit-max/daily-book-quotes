@@ -17,10 +17,12 @@ if (window.supabase) {
         console.warn('Supabase not configured. Please set API Keys in scripts/storage.js');
     }
 } else {
-    console.error('Supabase SDK not found in window!');
-    // Alert only if we are on a "real" domain (to avoid annoyance if local dev without internet)
-    // But for this user, it's critical.
-    // We will just log it for now, let the check in save() handle the alert.
+    const msg = 'Supabase SDK not found in window!';
+    console.error(msg);
+    if (window.logToScreen) {
+        document.getElementById('debug-log').style.display = 'block';
+        window.logToScreen(msg, true);
+    }
 }
 
 const Storage = {
